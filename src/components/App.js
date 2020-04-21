@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import fetch from 'node-fetch'
-import cors from 'cors'
-import googleTrends from 'google-trends-api'
+// import fetch from 'node-fetch'
+// import cors from 'cors'
+// import googleTrends from 'google-trends-api'
 import BusinessNews from './BusinessNews';
 import StockInfo from './StockInfo';
+import SideBar from './SideBar';
 import './App.css'
 
 class App extends Component{
@@ -17,19 +18,19 @@ class App extends Component{
         }
     }
 
-    loadGoogleTrends(){
-        googleTrends.realTimeTrends({
-            geo: 'US',
-            category: 'all',
-        }, function(err, results) {
-            if (err) {
-               console.log(err);
-            } else {
-              console.log('google',
-              results);
-            } 
-        });
-    }
+    // loadGoogleTrends(){
+    //     googleTrends.realTimeTrends({
+    //         geo: 'US',
+    //         category: 'all',
+    //     }, function(err, results) {
+    //         if (err) {
+    //            console.log(err);
+    //         } else {
+    //           console.log('google',
+    //           results);
+    //         } 
+    //     });
+    // }
 
 loadNews(){
     const apiKey = `pk_a3e3aa5101d349f8bf6fc55a7d0e1fd1 `
@@ -62,12 +63,13 @@ loadNews(){
     componentDidMount(){
         this.loadStocks();
         this.loadNews();
-        this.loadGoogleTrends();
+        // this.loadGoogleTrends();
      }
     render(){
     return(   
         <div>
             <h1>Hello World</h1>
+            <SideBar/>
             <div className='container'>
         <div className='main'><BusinessNews 
         news={this.state.news} /></div>
