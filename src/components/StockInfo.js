@@ -8,7 +8,7 @@ class StockInfo extends Component {
     console.log('StockInfo',  this.props.stocks)
     return(   
         <div>
-   {/* {this.props.stocks.map((item) => {
+   {this.props.stocks.map((item) => {
     return (
        
         <div><h1>
@@ -16,7 +16,7 @@ class StockInfo extends Component {
             </h1></div>
 
     )
-   })}  */}
+   })} 
 </div>
 )};
 }
