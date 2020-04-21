@@ -3,6 +3,8 @@ import axios from 'axios';
 import BusinessNews from './BusinessNews'
 import StockInfo from './StockInfo'
 
+import './App.css'
+
 class App extends Component{
     constructor(){
         super()
@@ -49,11 +51,16 @@ loadNews(){
     return(   
         <div>
             <h1>Hello World</h1>
-        <BusinessNews 
-        news={this.state.news} />
-    <StockInfo
+            <div className='container'>
+        <div className='main'><BusinessNews 
+        news={this.state.news} /></div>
+
+        <div className='main'><StockInfo
         stocks={this.state.stocks} />
         </div>
+        </div>
+        </div>
+    
     );
     };
 };

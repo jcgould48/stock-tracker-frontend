@@ -13,7 +13,7 @@ class BusinessNews extends Component {
     return (
         <div 
         className= 'ui card'
-        style={{width: '75%', padding:'20px'}}
+        style={{width: '45%', padding:'20px'}}
    >
        <div className='content'>
            <div className='header'>{item.headline}</div>
