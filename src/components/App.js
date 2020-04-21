@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import BusinessNews from './BusinessNews'
-import StockInfo from './StockInfo'
-
+import fetch from 'node-fetch'
+import cors from 'cors'
+import googleTrends from 'google-trends-api'
+import BusinessNews from './BusinessNews';
+import StockInfo from './StockInfo';
 import './App.css'
 
 class App extends Component{
@@ -13,6 +15,20 @@ class App extends Component{
             news: [],
         
         }
+    }
+
+    loadGoogleTrends(){
+        googleTrends.realTimeTrends({
+            geo: 'US',
+            category: 'all',
+        }, function(err, results) {
+            if (err) {
+               console.log(err);
+            } else {
+              console.log('google',
+              results);
+            } 
+        });
     }
 
 loadNews(){
@@ -46,6 +62,7 @@ loadNews(){
     componentDidMount(){
         this.loadStocks();
         this.loadNews();
+        this.loadGoogleTrends();
      }
     render(){
     return(   
