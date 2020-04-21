@@ -16,17 +16,16 @@ class BusinessNews extends Component {
         style={{width: '75%', padding:'20px'}}
    >
        <div className='content'>
-           <div className='header'>{item.title}</div>
-           <div className='header'>{item.source.name}</div>
-           
+           <div className='header'>{item.headline}</div>
            <br />
            <span style={{fontWeight:'bold' , color:'3b3b3b'}}>
-           <div className='meta'>Author: {item.author}</div>
+           <div className='meta'>Source: {item.source}</div>
            </span>
-           <span style={{fontWeight:'bold' , color:'3b3b3b'}}>
-           <div className='meta'>Description: {item.description}</div>
+           <span style={{color:'3b3b3b'}}>
+           <div className='description'>Summary: {item.summary}</div>
            </span>
            <hr />
+          
     </div>
     </div>
     )

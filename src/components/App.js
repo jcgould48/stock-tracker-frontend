@@ -14,17 +14,11 @@ class App extends Component{
     }
 
 loadNews(){
-    var url = 'http://newsapi.org/v2/everything?' +
-    'q=microsoft&' +
-    'from=2020-04-20&' +
-    'sortBy=popularity&' +
-    'totalResults=4&'+
-          'apiKey=fab90656a6474ea1986d70a75d676122';
-
-
+    const apiKey = `pk_a3e3aa5101d349f8bf6fc55a7d0e1fd1 `
+        const url = `https://cloud.iexapis.com/stable/stock/XOM/news/last/3?token=${apiKey}`;
+        
           axios.get(url).then((news)=>{
-              console.log(news.data.articles);
-               this.setState({news: news.data.articles},()=>{console.log("test...",Array.isArray(this.state.news))})
+               this.setState({news: news.data})
                
     })
 }
@@ -34,6 +28,7 @@ loadNews(){
          
         const apiKey = `pk_a3e3aa5101d349f8bf6fc55a7d0e1fd1 `
         const url = `https://cloud.iexapis.com/stable/stock/XOM/quote?token=${apiKey}`;
+        
         axios.get(url).then((stocks)=>{
             this.setState({stocks: stocks.data},()=>{console.log("test...",this.state.stocks)})
         // return this.setState({stocks: stocks.data})
