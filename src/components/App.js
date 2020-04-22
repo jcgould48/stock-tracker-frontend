@@ -9,13 +9,15 @@ import StockInfo from './StockInfo';
 import SideBar from './SideBar';
 import './App.css'
 
+require('dotenv').config()
+
 class App extends Component{
     constructor(){
         super()
         this.state = {
             stocks: [],
             news: [],
-            searchTerm: '',
+            searchItem: '',
             toggle: true,
         }
     }
@@ -35,7 +37,8 @@ class App extends Component{
     // }
 
 loadNews(){
-    const apiKey = `pk_a3e3aa5101d349f8bf6fc55a7d0e1fd1 `
+
+    const apiKey = process.env.REACT_APP_IEX_KEY
         const url = `https://cloud.iexapis.com/stable/stock/XOM/news/last/3?token=${apiKey}`;
         
           axios.get(url).then((news)=>{
@@ -46,20 +49,27 @@ loadNews(){
 
     loadStocks(){
          
-        const apiKey = `pk_a3e3aa5101d349f8bf6fc55a7d0e1fd1 `
-        const url = `https://cloud.iexapis.com/stable/stock/XOM/quote?token=${apiKey}`;
+       
+        const ticker= this.state.searchTerm;
+        const apiKey = process.env.REACT_APP_IEX_KEY
+        const url = `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${apiKey}`;
         
         axios.get(url).then((stocks)=>{
             this.setState({stocks: stocks.data},()=>{console.log("test...",this.state.stocks
             )})
     })
     }
+    
+    handleSearchSubmit = (event, searchItem) => {
+        event.preventDefault();
+        this.setState({searchItem: event.target.value}, 
+            ()=>{console.log(this.state.searchItem)})
+    }
 
-
-    handleChange = (event) => {
-        this.setState({searchTerm: event.target.value}, ()=>{console.log(this.state.searchTerm)})
+    // handleChange = (event) => {
+    //     this.setState({searchTerm: event.target.value}, ()=>{console.log(this.state.searchTerm)})
         
-    };
+    // };
 
     componentDidMount(){
         this.loadStocks();
@@ -80,8 +90,9 @@ alignItems:'center',
 flexDirection:'column',
 }}>  
 <Search 
-handleChange = {this.handleChange} 
-searchTerm= {this.state.searchTerm}/>
+handleSearchSubmit= {this.handleSearchSubmit} 
+// searchTerm= {this.state.searchTerm}
+/>
 <hr style={{width: '75' , color: '#3b3b3b', margin : '50px 0'}}/>
 </div>
 
