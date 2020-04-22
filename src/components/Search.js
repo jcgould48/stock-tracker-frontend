@@ -37,6 +37,7 @@ class Search extends Component{
         value={this.state.searchTerm}
         />
          <div className="field">
+             <br></br>
             <Button type='submit' className='ui button'>
                 Submit
             </Button>

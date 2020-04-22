@@ -1,8 +1,38 @@
 import React, {Component} from 'react';
-
+import Button from './Button';
 
 class StockInfo extends Component {
-  
+    constructor(){
+        super()
+        this.state = {
+            stock:{
+            companyName:'', 
+            symbol:'',  
+            objectId: new Date().getTime(),
+        }, 
+           
+        }
+    }
+
+    // handleChange = (event) => {
+    //     let savedStock = {...this.state.stock}
+    //     savedStock[event.target.name] =event.target.value;
+    //     this.setState({stock:savedStock}, () =>{
+    //         console.log(savedStock);
+    //     })
+    // }
+
+
+    handleSave= (event) => {
+        let updatedStock = {...this.state.stock}
+        updatedStock.companyName = this.props.stocks.companyName;
+        updatedStock.symbol = this.props.stocks.symbol;
+        console.log('Updated Stock', updatedStock)
+        this.setState({stock:updatedStock});
+        this.props.handleSaveSubmit(event, this.state.stock)
+        
+    }
+
     render()
    { 
     console.log('StockInfo...',  this.props.stocks)
@@ -23,17 +53,25 @@ class StockInfo extends Component {
       </div>
       </div>
       </div>
-            <h1></h1>
-            {/* <h1>{this.props.stocks['Meta Data']['Symbol']}</h1> */}
-   {/* {this.props.stocks.map((item) => {
-    return (
-       
-        <div><h1>
-            {item['Meta Data']['Symbol']}
-            </h1></div>
+      <form onSubmit={this.handleSave}>
+        <input 
+        // onChange={this.handleChange} 
+        type='hidden'
+        name='companyName' 
+        placeholder='Search By Stock Ticker...'
+        value={this.props.stocks.companyName}
+        />
+        <input 
+        // onChange={this.handleChange} 
+        type='hidden'
+        name='symbol' 
+        value={this.props.stocks.symbol}
+        />
 
-    )
-   })}  */}
+            <Button type='submit' className='ui green button'>
+                Add To Watch List
+            </Button>
+</form>
 </div>
 )};
 }

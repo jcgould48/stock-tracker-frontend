@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-// import fetch from 'node-fetch'
-// import cors from 'cors'
 // import googleTrends from 'google-trends-api'
 import Search from './Search';
 import BusinessNews from './BusinessNews';
@@ -35,13 +33,33 @@ class App extends Component{
     //         } 
     //     });
     // }
-        handleSearchSubmit = (event, searchItem) => {
-            event.preventDefault();
-            this.setState({searchItem: searchItem}, 
-                ()=>{console.log('searchNow...',this.state.searchItem)})
-                //this.loadStocks();
-               
-            }
+handleSearchSubmit = (event, searchItem) => {
+    event.preventDefault();
+    this.setState({searchItem: searchItem}, 
+        ()=>{console.log('searchNow...',this.state.searchItem)})
+        //this.loadStocks();
+        
+    }
+
+handleSaveSubmit = (event, stock) => {
+    event.preventDefault();
+    console.log('Is the save working...',stock)
+    let axiosConfig={
+        headers: {
+            'Content-Type' : 'application/json;charset=UTF-8',
+            'Access-Control-Allow-Origin': '*'
+        }
+    }
+    //'/blog' has to match post in backend method
+    axios.post('/stock', stock, axiosConfig)
+    // .then(()=>{
+    //     this.loadBlogs();
+    // })
+    // let updatedBlogs = [blog, ...this.state.blogs];
+    // this.setState({
+    //     blogs: updatedBlogs,
+    // }, ()=> {console.log(this.state.blogs)})
+}
 
 loadNews=()=>{
     const ticker= this.state.searchItem;
@@ -112,6 +130,7 @@ handleSearchSubmit= {this.handleSearchSubmit}
 news={this.state.news} /></div>
 
 <div className='main'><StockInfo
+handleSaveSubmit = {this.handleSaveSubmit}
 stocks={this.state.stocks} />
 </div>
 </div>
