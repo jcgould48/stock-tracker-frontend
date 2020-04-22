@@ -4,19 +4,26 @@ import React from 'react'
 const Sidebar = () => {
   
   return (
-    <div class="ui raised segments pushable">
-  <div class="ui inverted vertical labeled icon ui overlay left thin sidebar menu">
-    <a class="item">Home</a>
-    <a class="item">Games</a>
-    <a class="item">Channels</a>
+    <div class="ui segment pushable">
+  <div class="ui inverted vertical labeled icon ui overlay left thin visible sidebar menu">
+    <a class="item">
+      <i aria-hidden="true" class="home icon"></i>
+      Home
+    </a>
+    <a class="item">
+      <i aria-hidden="true" class="gamepad icon"></i>
+      Games
+    </a>
+    <a class="item">
+      <i aria-hidden="true" class="camera icon"></i>
+      Channels
+    </a>
   </div>
-  <div class="ui secondary segment">
-    <h3 class="ui header">Clickable area</h3>
-    <p>When you will click there, the sidebar will be closed.</p>
-  </div>
-  <div class="ui segment">
-    <h3 class="ui header">Application Content</h3>
-    <img src="https://react.semantic-ui.com/images/wireframe/paragraph.png" class="ui image" />
+  <div class="pusher">
+    <div class="ui basic segment">
+      <h3 class="ui header">Application Content</h3>
+      <img src="https://react.semantic-ui.com/images/wireframe/paragraph.png" class="ui image" />
+    </div>
   </div>
 </div>
   )
