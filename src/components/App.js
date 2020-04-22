@@ -35,11 +35,18 @@ class App extends Component{
     //         } 
     //     });
     // }
+        handleSearchSubmit = (event, searchItem) => {
+            event.preventDefault();
+            this.setState({searchItem: searchItem}, 
+                ()=>{console.log('searchNow...',this.state.searchItem)})
+                //this.loadStocks();
+               
+            }
 
-loadNews(){
-
+loadNews=()=>{
+    const ticker= this.state.searchItem;
     const apiKey = process.env.REACT_APP_IEX_KEY
-        const url = `https://cloud.iexapis.com/stable/stock/XOM/news/last/3?token=${apiKey}`;
+    const url = `https://cloud.iexapis.com/stable/stock/${ticker}/news/last/3?token=${apiKey}`;
         
           axios.get(url).then((news)=>{
                this.setState({news: news.data})
@@ -47,15 +54,7 @@ loadNews(){
     })
 }
 
-
-handleSearchSubmit = (event, searchItem) => {
-    event.preventDefault();
-    this.setState({searchItem: searchItem}, 
-        ()=>{console.log('searchNow...',this.state.searchItem)})
-        this.componentDidMount()
-    }
-    
-    loadStocks(){
+    loadStocks=()=>{
          
         const ticker= this.state.searchItem;
         const apiKey = process.env.REACT_APP_IEX_KEY
@@ -75,6 +74,16 @@ handleSearchSubmit = (event, searchItem) => {
             this.loadStocks();
             this.loadNews();
             // this.loadGoogleTrends();
+        }
+
+        componentDidUpdate(prevProps,prevState){
+            console.log('s1', prevState.searchItem)
+            console.log('s2', this.state.searchItem)
+            if(prevState.searchItem !==this.state.searchItem){
+                console.log('running')
+               this.loadStocks();
+               this.loadNews();
+            }
         }
         render(){
             return(   
