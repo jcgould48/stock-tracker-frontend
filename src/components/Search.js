@@ -10,18 +10,16 @@ class Search extends Component{
         }
            
     }
-    // handleChange = (event) => {
-    //     let updatedSearch = {...this.state.searchItem}
-    //     updatedBlog[event.target.name] =event.target.value;
-    //     this.setState({blog:updatedBlog}, () =>{
-    //         console.log(updatedBlog);
-    //     })
-    // }
+    handleChange = (event) => {
+        
+        this.setState({searchItem:event.target.value}, () =>{
+            console.log('updatedsearch...', this.state.searchItem);
+        })
+    }
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.handleSearchSubmit(event, this.state.searchItem)
-        // let emptyBlog = {title:'', author:'', subject:'', article:''}
-        // this.setState({blog:emptyBlog});
+        this.setState({searchItem:''});
         event.target.reset();
     }
 
@@ -33,7 +31,7 @@ class Search extends Component{
 <form onSubmit={this.handleSubmit} className='ui form'>
     <div className='field'>
         <input 
-        // onChange={this.handleChange} 
+        onChange={this.handleChange} 
         type='text' 
         placeholder='Search By Stock Ticker...'
         value={this.state.searchTerm}

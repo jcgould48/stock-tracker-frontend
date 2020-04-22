@@ -17,7 +17,7 @@ class App extends Component{
         this.state = {
             stocks: [],
             news: [],
-            searchItem: '',
+            searchItem: 'XOM',
             toggle: true,
         }
     }
@@ -47,10 +47,17 @@ loadNews(){
     })
 }
 
+
+handleSearchSubmit = (event, searchItem) => {
+    event.preventDefault();
+    this.setState({searchItem: searchItem}, 
+        ()=>{console.log('searchNow...',this.state.searchItem)})
+        this.componentDidMount()
+    }
+    
     loadStocks(){
          
-       
-        const ticker= this.state.searchTerm;
+        const ticker= this.state.searchItem;
         const apiKey = process.env.REACT_APP_IEX_KEY
         const url = `https://cloud.iexapis.com/stable/stock/${ticker}/quote?token=${apiKey}`;
         
@@ -59,26 +66,19 @@ loadNews(){
             )})
     })
     }
-    
-    handleSearchSubmit = (event, searchItem) => {
-        event.preventDefault();
-        this.setState({searchItem: event.target.value}, 
-            ()=>{console.log(this.state.searchItem)})
-    }
-
     // handleChange = (event) => {
-    //     this.setState({searchTerm: event.target.value}, ()=>{console.log(this.state.searchTerm)})
+        //     this.setState({searchTerm: event.target.value}, ()=>{console.log(this.state.searchTerm)})
         
-    // };
-
-    componentDidMount(){
-        this.loadStocks();
-        this.loadNews();
-        // this.loadGoogleTrends();
-     }
-    render(){
-    return(   
-        <div>
+        // };
+        
+        componentDidMount(){
+            this.loadStocks();
+            this.loadNews();
+            // this.loadGoogleTrends();
+        }
+        render(){
+            return(   
+                <div>
             <h1>Hello World</h1>
             {/* <SideBar/> */}
 
