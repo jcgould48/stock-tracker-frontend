@@ -62,7 +62,7 @@ handleSaveSubmit = (event) => {
             'Access-Control-Allow-Origin': '*'
         }
     }
-    axios.post('/stock', this.state.stocks.symbol,this.state.stocks.companyName, axiosConfig)
+    axios.post('/stock', this.state.stocks, axiosConfig)
     .then(()=>{
         this.loadSaved();
     })
