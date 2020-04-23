@@ -105,6 +105,7 @@ loadNews=()=>{
         componentDidMount(){
             this.loadStocks();
             this.loadNews();
+            this.loadSaved();
             // this.loadGoogleTrends();
         }
 
@@ -115,6 +116,7 @@ loadNews=()=>{
                 console.log('running')
                this.loadStocks();
                this.loadNews();
+               this.loadSaved();
             }
         }
 
@@ -123,7 +125,10 @@ loadNews=()=>{
             return(   
                 <div>
             <h1>Hello World</h1>
-            {/* <SideBar/> */}
+            <SideBar
+            savedStocks={this.state.savedStocks}
+            onDelete={this.onDelete}
+            />
 
         <div style= {{
 marginTop:'100px',

@@ -13,21 +13,7 @@ class StockInfo extends Component {
         }
     }
 
-    // handleChange = (event) => {
-    //     let savedStock = {...this.state.stock}
-    //     savedStock[event.target.name] =event.target.value;
-    //     this.setState({stock:savedStock}, () =>{
-    //         console.log(savedStock);
-    //     })
-    // }
-
-
     handleSave= (event) => {
-        // let updatedStock = {...this.state.stock}
-        // updatedStock.companyName = this.props.stocks.companyName;
-        // updatedStock.symbol = this.props.stocks.symbol;
-        // // console.log('Updated Stock', updatedStock)
-        // this.setState({stock:updatedStock});
         this.props.handleSaveSubmit(event)
         
     }
@@ -67,7 +53,7 @@ class StockInfo extends Component {
         value={this.props.stocks.symbol}
         />
 
-            <Button type='submit' className='ui green button'>
+            <Button type='submit' className='ui green button' >
                 Add To Watch List
             </Button>
 </form>

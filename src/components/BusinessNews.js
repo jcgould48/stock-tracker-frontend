@@ -5,7 +5,7 @@ class BusinessNews extends Component {
   
     render()
    { 
-    console.log('BusinessNews',  this.props.news)
+    // console.log('BusinessNews',  this.props.news)
     return(   
         <div>
 

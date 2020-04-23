@@ -1,23 +1,29 @@
 import React from 'react'
+import Button from './Button'
 
-
-const Sidebar = () => {
+const Sidebar = (
+    {onDelete, 
+    savedStocks}) => {
   
   return (
     <div class="ui segment pushable">
   <div class="ui inverted vertical labeled icon ui overlay left thin visible sidebar menu">
-    <a class="item">
-      <i aria-hidden="true" class="home icon"></i>
-      Home
-    </a>
-    <a class="item">
-      <i aria-hidden="true" class="gamepad icon"></i>
-      Games
-    </a>
-    <a class="item">
-      <i aria-hidden="true" class="camera icon"></i>
-      Channels
-    </a>
+  {savedStocks.map((item) => {
+    return (
+        <div>
+        <a class="item">
+        <i aria-hidden="true" class="home icon"></i>
+        {item.symbol}
+      </a>  
+      <Button type='submit' className='ui small red button' onClick={() =>{
+                return onDelete(item._id)
+            }}
+            >
+                Delete
+            </Button>
+      </div>
+    )
+   })} 
   </div>
   <div class="pusher">
     <div class="ui basic segment">
