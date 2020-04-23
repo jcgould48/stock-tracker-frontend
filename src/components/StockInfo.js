@@ -8,7 +8,6 @@ class StockInfo extends Component {
             stock:{
             companyName:'', 
             symbol:'',  
-            objectId: new Date().getTime(),
         }, 
            
         }
