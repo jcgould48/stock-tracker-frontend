@@ -15,6 +15,7 @@ class App extends Component{
         this.state = {
             stocks: [],
             news: [],
+            savedStocks: [],
             searchItem: 'XOM',
             toggle: true,
         }
@@ -33,32 +34,45 @@ class App extends Component{
     //         } 
     //     });
     // }
+
+loadSaved(){
+    const url = '/stocks' //works in conjuction with 'proxy' in package.json
+    axios.get(url).then((stocks)=>{
+    // return console.log(blogs.data);
+    return this.setState({savedStocks: stocks.data})
+    })
+}
+
 handleSearchSubmit = (event, searchItem) => {
     event.preventDefault();
     this.setState({searchItem: searchItem}, 
         ()=>{console.log('searchNow...',this.state.searchItem)})
         //this.loadStocks();
-        
+ 
     }
 
-handleSaveSubmit = (event, stock) => {
+
+handleSaveSubmit = (event) => {
     event.preventDefault();
-    console.log('Is the save working...',stock)
+    console.log('Is the save working...',this.state.stocks)
+    console.log('Is the save working2...',this.state.stocks.symbol)
     let axiosConfig={
         headers: {
             'Content-Type' : 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': '*'
         }
     }
-    //'/blog' has to match post in backend method
-    axios.post('/stock', stock, axiosConfig)
-    // .then(()=>{
-    //     this.loadBlogs();
-    // })
-    // let updatedBlogs = [blog, ...this.state.blogs];
-    // this.setState({
-    //     blogs: updatedBlogs,
-    // }, ()=> {console.log(this.state.blogs)})
+    axios.post('/stock', this.state.stocks.symbol,this.state.stocks.companyName, axiosConfig)
+    .then(()=>{
+        this.loadSaved();
+    })
+}
+
+
+onDelete= (id)=>{
+    axios.delete(`/stock/${id}`).then(()=>{
+        this.loadSaved();
+    })
 }
 
 loadNews=()=>{
@@ -103,6 +117,8 @@ loadNews=()=>{
                this.loadNews();
             }
         }
+
+
         render(){
             return(   
                 <div>

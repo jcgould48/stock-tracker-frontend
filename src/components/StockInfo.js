@@ -23,18 +23,18 @@ class StockInfo extends Component {
 
 
     handleSave= (event) => {
-        let updatedStock = {...this.state.stock}
-        updatedStock.companyName = this.props.stocks.companyName;
-        updatedStock.symbol = this.props.stocks.symbol;
-        console.log('Updated Stock', updatedStock)
-        this.setState({stock:updatedStock});
-        this.props.handleSaveSubmit(event, this.state.stock)
+        // let updatedStock = {...this.state.stock}
+        // updatedStock.companyName = this.props.stocks.companyName;
+        // updatedStock.symbol = this.props.stocks.symbol;
+        // // console.log('Updated Stock', updatedStock)
+        // this.setState({stock:updatedStock});
+        this.props.handleSaveSubmit(event)
         
     }
 
     render()
    { 
-    console.log('StockInfo...',  this.props.stocks)
+    // console.log('StockInfo...',  this.props.stocks)
     return(   
         <div>
 
