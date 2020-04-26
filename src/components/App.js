@@ -35,6 +35,14 @@ class App extends Component{
     //     });
     // }
 
+handleToggle=(event)=> {
+    event.preventDefault();
+    this.setState({
+        toggle: !this.state.toggle,
+    },()=>{console.log("toggle...",this.state.toggle
+    )})
+}
+
 loadSaved(){
     const url = '/stocks' //works in conjuction with 'proxy' in package.json
     axios.get(url).then((stocks)=>{
@@ -127,7 +135,7 @@ loadNews=()=>{
             <h1>Hello World</h1>
             
 
-        <div style= {{
+        {/* <div style= {{
 marginTop:'100px',
 display: 'flex',
 justifyContent:'center',
@@ -139,17 +147,16 @@ handleSearchSubmit= {this.handleSearchSubmit}
 // searchTerm= {this.state.searchTerm}
 />
 <hr style={{width: '75' , color: '#3b3b3b', margin : '50px 0'}}/>
-</div>
+</div> */}
 <SideBar
             savedStocks={this.state.savedStocks}
             onDelete={this.onDelete}
-            news={this.state.news} 
-            handleSaveSubmit = {this.handleSaveSubmit}
-stocks={this.state.stocks}
+            handleSearchSubmit = {this.handleSearchSubmit}
+            handleToggle = {this.handleToggle}
             />
 
 
-    {/* <div className='container'>
+    <div className='container'>
 <div className='main'><BusinessNews 
 news={this.state.news} /></div>
 
@@ -157,7 +164,7 @@ news={this.state.news} /></div>
 handleSaveSubmit = {this.handleSaveSubmit}
 stocks={this.state.stocks} />
 </div>
-</div> */}
+</div>
 </div>
     
     );

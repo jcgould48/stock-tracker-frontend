@@ -28,22 +28,28 @@ class Search extends Component{
         <div style={{margin:'40px', width: '300px'}}>
             <div>
     <h1>Search Stocks</h1>
+    
 <form onSubmit={this.handleSubmit} className='ui form'>
     <div className='field'>
+        <div className='field ui icon input'>
         <input 
         onChange={this.handleChange} 
         type='text' 
         placeholder='Search By Stock Ticker...'
         value={this.state.searchTerm}
         />
+         <i aria-hidden="true" class="search icon"></i>
+         </div>
          <div className="field">
              <br></br>
             <Button type='submit' className='ui button'>
                 Submit
             </Button>
+           
         </div>
     </div>
 </form>
+
 </div>
         </div>
         );

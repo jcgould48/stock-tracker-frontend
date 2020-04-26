@@ -1,12 +1,12 @@
 import React from 'react'
 import Button from './Button'
-import BusinessNews from './BusinessNews';
-import StockInfo from './StockInfo';
-import './App.css'
+import Search from './Search';
 
 const Sidebar = (
     {onDelete, 
-    savedStocks, handleSaveSubmit, news, stocks}) => {
+    savedStocks,
+handleSearchSubmit, 
+handleToggle}) => {
   
   return (
     <div class="ui segment pushable">
@@ -22,7 +22,7 @@ const Sidebar = (
                 return onDelete(item._id)
             }}
             >
-                Delete
+                X
             </Button>
       </div>
     )
@@ -30,18 +30,24 @@ const Sidebar = (
   </div>
   <div class="pusher">
     <div class="ui basic segment">
-    <div className='container'>
-<div className='main'><BusinessNews 
-news={news} /></div>
-
-<div className='main'><StockInfo
-handleSaveSubmit = {handleSaveSubmit}
-stocks={stocks} />
+    <div style= {{
+marginTop:'100px',
+display: 'flex',
+justifyContent:'center',
+alignItems:'center',
+flexDirection:'column',
+}}>  
+<Search 
+handleSearchSubmit= {handleSearchSubmit} 
+handleToggle ={handleToggle}
+// searchTerm= {this.state.searchTerm}
+/>
+<hr style={{width: '75' , color: '#3b3b3b', margin : '50px 0'}}/>
 </div>
-</div>
-
     </div>
   </div>
+  <button className='ui button' onClick = {this.handleToggle}>View Favorites
+</button>
 </div>
   )
 }
