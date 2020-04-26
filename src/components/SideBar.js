@@ -1,9 +1,12 @@
 import React from 'react'
 import Button from './Button'
+import BusinessNews from './BusinessNews';
+import StockInfo from './StockInfo';
+import './App.css'
 
 const Sidebar = (
     {onDelete, 
-    savedStocks}) => {
+    savedStocks, handleSaveSubmit, news, stocks}) => {
   
   return (
     <div class="ui segment pushable">
@@ -27,8 +30,16 @@ const Sidebar = (
   </div>
   <div class="pusher">
     <div class="ui basic segment">
-      <h3 class="ui header">Application Content</h3>
-      <img src="https://react.semantic-ui.com/images/wireframe/paragraph.png" class="ui image" />
+    <div className='container'>
+<div className='main'><BusinessNews 
+news={news} /></div>
+
+<div className='main'><StockInfo
+handleSaveSubmit = {handleSaveSubmit}
+stocks={stocks} />
+</div>
+</div>
+
     </div>
   </div>
 </div>

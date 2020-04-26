@@ -125,10 +125,7 @@ loadNews=()=>{
             return(   
                 <div>
             <h1>Hello World</h1>
-            <SideBar
-            savedStocks={this.state.savedStocks}
-            onDelete={this.onDelete}
-            />
+            
 
         <div style= {{
 marginTop:'100px',
@@ -143,10 +140,16 @@ handleSearchSubmit= {this.handleSearchSubmit}
 />
 <hr style={{width: '75' , color: '#3b3b3b', margin : '50px 0'}}/>
 </div>
+<SideBar
+            savedStocks={this.state.savedStocks}
+            onDelete={this.onDelete}
+            news={this.state.news} 
+            handleSaveSubmit = {this.handleSaveSubmit}
+stocks={this.state.stocks}
+            />
 
 
-
-    <div className='container'>
+    {/* <div className='container'>
 <div className='main'><BusinessNews 
 news={this.state.news} /></div>
 
@@ -154,7 +157,7 @@ news={this.state.news} /></div>
 handleSaveSubmit = {this.handleSaveSubmit}
 stocks={this.state.stocks} />
 </div>
-</div>
+</div> */}
 </div>
     
     );
