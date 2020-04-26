@@ -7,6 +7,7 @@ class Search extends Component{
         super()
         this.state = {
             searchItem: '',
+            toggle: true,
         }
            
     }
@@ -23,6 +24,7 @@ class Search extends Component{
         event.target.reset();
     }
 
+    
     render() {
         return(
         <div style={{margin:'40px', width: '300px'}}>
@@ -49,7 +51,6 @@ class Search extends Component{
         </div>
     </div>
 </form>
-
 </div>
         </div>
         );

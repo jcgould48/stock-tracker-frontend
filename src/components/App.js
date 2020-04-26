@@ -148,12 +148,25 @@ handleSearchSubmit= {this.handleSearchSubmit}
 />
 <hr style={{width: '75' , color: '#3b3b3b', margin : '50px 0'}}/>
 </div> */}
-<SideBar
+<div class="ui checkbox">
+  <input type="checkbox" name="toggle" onChange = {this.handleToggle}/>
+  <label>View Favorites</label>
+</div>
+{this.state.toggle ? 
+(<SideBar
+    savedStocks={this.state.savedStocks}
+    onDelete={this.onDelete}
+    handleSearchSubmit = {this.handleSearchSubmit}
+    // handleToggle = {this.handleToggle}
+    />)
+: (<Search handleSearchSubmit = {this.handleSearchSubmit} />)
+}
+{/* <SideBar
             savedStocks={this.state.savedStocks}
             onDelete={this.onDelete}
             handleSearchSubmit = {this.handleSearchSubmit}
-            handleToggle = {this.handleToggle}
-            />
+            // handleToggle = {this.handleToggle}
+            /> */}
 
 
     <div className='container'>

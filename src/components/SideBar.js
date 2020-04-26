@@ -1,25 +1,39 @@
-import React from 'react'
+
+import React, {Component} from 'react'
 import Button from './Button'
 import Search from './Search';
 
-const Sidebar = (
-    {onDelete, 
-    savedStocks,
-handleSearchSubmit, 
-handleToggle}) => {
-  
-  return (
-    <div class="ui segment pushable">
-  <div class="ui inverted vertical labeled icon ui overlay left thin visible sidebar menu">
-  {savedStocks.map((item) => {
+class Sidebar extends Component{
+    constructor(){
+        super()
+        this.state = {
+            toggle: true,
+        }
+           
+    }
+    handleToggle=(event)=> {
+        event.preventDefault();
+        console.log("toggle11...",this.state.toggle
+        )
+        this.setState({
+            toggle: !this.state.toggle,
+        },()=>{console.log("toggle...",this.state.toggle
+        )})
+    }
+
+  render(){
+      return (
+      <div>       
+    <div class="ui segment pushable">      
+  <div class="ui sidebar inverted visible vertical right menu">
+  {this.props.savedStocks.map((item) => {
     return (
         <div>
         <a class="item">
-        <i aria-hidden="true" class="home icon"></i>
         {item.symbol}
       </a>  
-      <Button type='submit' className='ui small red button' onClick={() =>{
-                return onDelete(item._id)
+      <Button type='submit' className='ui mini red button' onClick={() =>{
+                return this.props.onDelete(item._id)
             }}
             >
                 X
@@ -37,19 +51,29 @@ justifyContent:'center',
 alignItems:'center',
 flexDirection:'column',
 }}>  
+{/* <div>
+            {this.state.toggle
+            ? <h1>Yep</h1>
+            : <h1>Nope</h1>
+          }
+        </div> */}
 <Search 
-handleSearchSubmit= {handleSearchSubmit} 
-handleToggle ={handleToggle}
+handleSearchSubmit= {this.props.handleSearchSubmit} 
+// handleToggle ={handleToggle}
 // searchTerm= {this.state.searchTerm}
 />
+{/* <div class="ui checkbox">
+  <input type="checkbox" name="toggle" onChange = {this.handleToggle}/>
+  <label>View Favorites</label>
+</div> */}
 <hr style={{width: '75' , color: '#3b3b3b', margin : '50px 0'}}/>
 </div>
     </div>
   </div>
-  <button className='ui button' onClick = {this.handleToggle}>View Favorites
-</button>
+</div>
+<a href="https://iexcloud.io">Data provided by IEX Cloud</a>
 </div>
   )
 }
-
+}
 export default Sidebar
