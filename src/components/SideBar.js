@@ -1,19 +1,23 @@
 
 import React, {Component} from 'react'
 import Button from './Button'
-import Search from './Search';
 
 class Sidebar extends Component{
   render(){
       return (
-      <div>       
-    <div class="ui segment pushable">      
-  <div class="ui sidebar inverted visible vertical right menu">
-  {this.props.savedStocks.map((item) => {
+      <div> 
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div className="collapse navbar-collapse" id="navbarNav">
+    <ul className="navbar-nav">
+    {this.props.savedStocks.map((item) => {
     return (
         <div>
-            
-        <a class="item">
+         <li className="nav-item active">
+        <a className="nav-link" href="#">   
+        {/* <a class="item"> */}
         <Button type='submit' className='ui mini white button' onClick={() =>{
                 return this.props.handleRecallSubmit(item.symbol)
             }}
@@ -26,36 +30,16 @@ class Sidebar extends Component{
             >
                 X
             </Button>
+            <span className="sr-only">(current)</span>
       </a>  
-    
+    </li>
       </div>
     )
    })} 
-  </div>
-  <div class="pusher">
-    <div class="ui basic segment">
-    <div style= {{
-marginTop:'100px',
-display: 'flex',
-justifyContent:'center',
-alignItems:'center',
-flexDirection:'column',
-}}>  
-<Search 
-handleSearchSubmit= {this.props.handleSearchSubmit} 
-// handleToggle ={handleToggle}
-// searchTerm= {this.state.searchTerm}
-/>
-{/* <div class="ui checkbox">
-  <input type="checkbox" name="toggle" onChange = {this.handleToggle}/>
-  <label>View Favorites</label>
-</div> */}
-<hr style={{width: '75' , color: '#3b3b3b', margin : '50px 0'}}/>
-</div>
-    </div>
-  </div>
-</div>
 
+    </ul>
+  </div>
+</nav>      
 </div>
   )
 }

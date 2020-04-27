@@ -157,11 +157,7 @@ loadNews=()=>{
             return(   
                 <div>
             <h1>Hello World</h1>
-            <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-    <div class="field">         
+<div class="field">         
 <div class="ui toggle checkbox">
   <input type="checkbox" name="toggle" onChange = {this.handleToggle}/>
   <label>View Favorites</label>
@@ -171,11 +167,11 @@ loadNews=()=>{
 (<SideBar
     savedStocks={this.state.savedStocks}
     onDelete={this.onDelete}
-    handleSearchSubmit = {this.handleSearchSubmit}
     handleRecallSubmit = {this.handleRecallSubmit}
     />)
-: (<Search handleSearchSubmit = {this.handleSearchSubmit} />)
+: (<nav className="navbar navbar-dark bg-dark" style={{height:'55px'}}></nav>)
 }
+<Search handleSearchSubmit = {this.handleSearchSubmit} />
 {/* <SideBar
             savedStocks={this.state.savedStocks}
             onDelete={this.onDelete}
