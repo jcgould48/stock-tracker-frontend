@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // import PropTypes from 'prop-types';
 import Button from './Button';
+import './App.css'
 
 class Search extends Component{
     constructor(){
@@ -27,9 +28,9 @@ class Search extends Component{
     
     render() {
         return(
-        <div className='ui card'>
-            <div  style={{margin:'40px', width: '100%'}}>
-    <h1>Search Stocks</h1>
+        <div>
+            <div className='searchCard'>
+    <h2 style={{color:'#666666'}}>Search Stocks</h2>
     
 <form onSubmit={this.handleSubmit} className='ui form'>
     <div className='field'>
@@ -43,11 +44,11 @@ class Search extends Component{
          <i aria-hidden="true" class="search icon"></i>
          </div>
          <div className="field">
-             <br></br>
-            <Button type='submit' className='ui button'>
+           <div className='mybtn'>
+            <Button type='submit' className="btn btn-outline-dark">
                 Submit
             </Button>
-           
+            </div>  
         </div>
     </div>
 </form>

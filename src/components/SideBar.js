@@ -18,13 +18,14 @@ class Sidebar extends Component{
          <li className="nav-item active">
         <a className="nav-link" href="#">   
         {/* <a class="item"> */}
-        <Button type='submit' className='ui mini white button' onClick={() =>{
+        <Button type='submit' className="btn btn-sm btn-outline-light" onClick={() =>{
                 return this.props.handleRecallSubmit(item.symbol)
             }}
             >
-            {item.companyName}
+            {item.symbol}
             </Button>
-            <Button type='submit' className='ui mini red button' onClick={() =>{
+            
+            <Button type='submit' className='btn btn-sm btn-outline-danger' onClick={() =>{
                 return this.props.onDelete(item._id)
             }}
             >

@@ -8,18 +8,15 @@ class BusinessNews extends Component {
     // console.log('BusinessNews',  this.props.news)
     return(   
         <div>
-
+        <h2 style={{color:'#666666'}}>Recent News</h2>
    {this.props.news.map((item) => {
     return (
-        <div 
-        className= 'ui card'
-        style={{width: '45%', padding:'20px'}}
-   >
+        <div className= 'ui card' style={{width: '100%'}}>
        <div className='content'>
            <div className='header'>{item.headline}</div>
            <br />
            <span style={{fontWeight:'bold' , color:'3b3b3b'}}>
-           <div className='meta'>Source: {item.source}</div>
+           <a href={item.url} className='meta'>Source: {item.source}</a>
            </span>
            <span style={{color:'3b3b3b'}}>
            <div className='description'>Summary: {item.summary}</div>

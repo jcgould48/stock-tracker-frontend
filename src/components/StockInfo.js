@@ -29,32 +29,19 @@ class StockInfo extends Component {
         <img src='' alt="..."/>
       </div>
       <div className="content">
-          <a className="header">{this.props.stocks.symbol}</a>
-          <div className="meta">{this.props.stocks.companyName}</div>
+          <a className="header">{this.props.stocks.companyName}</a>
+          <div className="meta">{this.props.stocks.primaryExchange}: {this.props.stocks.symbol}</div>
       <div className="description">
       {this.props.stocks.primaryExchange}
 
-    <div>{this.props.stocks.latestPrice}</div>
+    <div>Latest Price: {this.props.stocks.latestPrice}</div>
     <div>{this.props.stocks.change}</div>
       </div>
       </div>
       </div>
       <form onSubmit={this.handleSave}>
-        {/* <input 
-        // onChange={this.handleChange} 
-        type='hidden'
-        name='companyName' 
-        placeholder='Search By Stock Ticker...'
-        value={this.props.stocks.companyName}
-        />
-        <input 
-        // onChange={this.handleChange} 
-        type='hidden'
-        name='symbol' 
-        value={this.props.stocks.symbol}
-        /> */}
 
-            <Button type='submit' className='ui green button' >
+            <Button type='submit' className="btn btn-outline-dark" >
                 Add To Watch List
             </Button>
 </form>

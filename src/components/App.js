@@ -111,39 +111,38 @@ loadNews=()=>{
     })
     }
 
-    getChartData=()=>{
-        const ticker= this.state.searchItem;
-        const apiKey = process.env.REACT_APP_IEX_KEY
-        const url = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/1m?token=${apiKey}`;
-        this.setState({histPrices: [],
-            histPricesLabel:[]
-        })
-        axios.get(url).then((prices)=>{
-            prices.data.map((item)=>{
-                let updatedPrices = [...this.state.histPrices,item.close];
-                let updatedLabel = [...this.state.histPricesLabel, item.label];
-                 this.setState({
-            histPrices: updatedPrices,
-            histPricesLabel: updatedLabel,
-        }, ()=> {console.log('Got chart data?',this.state.histPrices, this.state.histPricesLabel)})
-            })
-        })
-}
+//     getChartData=()=>{
+//         const ticker= this.state.searchItem;
+//         const apiKey = process.env.REACT_APP_IEX_KEY
+//         const url = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/1m?token=${apiKey}`;
+//         this.setState({histPrices: [],
+//             histPricesLabel:[]
+//         })
+//         axios.get(url).then((prices)=>{
+//             prices.data.map((item)=>{
+//                 let updatedPrices = [...this.state.histPrices,item.close];
+//                 let updatedLabel = [...this.state.histPricesLabel, item.label];
+//                  this.setState({
+//             histPrices: updatedPrices,
+//             histPricesLabel: updatedLabel,
+//         }, ()=> {console.log('Got chart data?',this.state.histPrices, this.state.histPricesLabel)})
+//             })
+//         })
+// }
     
 
         componentDidMount(){
             this.loadStocks();
             this.loadNews();
             this.loadSaved();
-            this.getChartData();
+            // this.getChartData();
             // this.loadGoogleTrends();
         }
 
         componentDidUpdate(prevProps,prevState){
-            console.log('s1', prevState.searchItem)
-            console.log('s2', this.state.searchItem)
+            // console.log('s1', prevState.searchItem)
+            // console.log('s2', this.state.searchItem)
             if(prevState.searchItem !==this.state.searchItem){
-                console.log('running')
                this.loadStocks();
                this.loadNews();
                this.loadSaved();
@@ -153,15 +152,19 @@ loadNews=()=>{
 
 
         render(){
-            return(   
-                <div>
-            <h1>Hello World</h1>
-<div class="field">         
-<div class="ui toggle checkbox">
+            return(  
+                <div> 
+
+                <div className='header'>
+            <h1>Stock Tracker</h1>
+            
+<div className="field">         
+<div className="ui toggle checkbox">
   <input type="checkbox" name="toggle" onChange = {this.handleToggle}/>
   <label>View Favorites</label>
 </div>
 </div>
+</div> 
 {this.state.toggle ? 
 (<SideBar
     savedStocks={this.state.savedStocks}
@@ -170,21 +173,34 @@ loadNews=()=>{
     />)
 : (<nav className="navbar navbar-dark bg-dark" style={{height:'55px'}}></nav>)
 }
+<div className='search'>
 <Search  className ='search' handleSearchSubmit = {this.handleSearchSubmit} />
+</div>
+<br></br>
+<nav className="navbar navbar-dark bg-dark" style={{height:'2px'}}></nav>
+<br></br>
+<hr style={{width: '40%', marginLeft:'auto', marginRight: 'auto'}}/>
+<div className='myContainer'>
+    <div className='main stockInfo'><StockInfo
+    handleSaveSubmit = {this.handleSaveSubmit}
+    stocks={this.state.stocks} />
+    </div>
+<br></br>
+    <div className='main chart'><Chart 
+    stocks={this.state.stocks} 
+    histPrices={this.state.histPrices} 
+    histPricesLabel={this.state.histPricesLabel} 
+    />
+    </div>
+</div>
+<br></br>
+<hr style={{width: '60%', marginLeft:'auto', marginRight: 'auto'}}/>
+<hr style={{width: '60%', marginLeft:'auto', marginRight: 'auto'}}/>
+{/* <nav className="navbar navbar-dark bg-dark" style={{height:'2px'}}></nav> */}
+<div className='newsContainer'>
 
-    <div className='container'>
-<div className='main'><BusinessNews 
-news={this.state.news} /></div>
-
-<div className='main'><Chart 
-stocks={this.state.stocks} 
-histPrices={this.state.histPrices} 
-histPricesLabel={this.state.histPricesLabel} 
-/></div>
-
-<div className='main'><StockInfo
-handleSaveSubmit = {this.handleSaveSubmit}
-stocks={this.state.stocks} />
+<div className='main businessNews'><BusinessNews 
+news={this.state.news} />
 </div>
 </div>
 <a href="https://iexcloud.io">Data provided by IEX Cloud</a>
