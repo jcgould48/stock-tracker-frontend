@@ -24,20 +24,6 @@ class App extends Component{
         }
     }
 
-    // loadGoogleTrends(){
-    //     googleTrends.realTimeTrends({
-    //         geo: 'US',
-    //         category: 'all',
-    //     }, function(err, results) {
-    //         if (err) {
-    //            console.log(err);
-    //         } else {
-    //           console.log('google',
-    //           results);
-    //         } 
-    //     });
-    // }
-
 handleToggle=()=> {
     this.setState({
         toggle: !this.state.toggle,
@@ -111,24 +97,24 @@ loadNews=()=>{
     })
     }
 
-//     getChartData=()=>{
-//         const ticker= this.state.searchItem;
-//         const apiKey = process.env.REACT_APP_IEX_KEY
-//         const url = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/1m?token=${apiKey}`;
-//         this.setState({histPrices: [],
-//             histPricesLabel:[]
-//         })
-//         axios.get(url).then((prices)=>{
-//             prices.data.map((item)=>{
-//                 let updatedPrices = [...this.state.histPrices,item.close];
-//                 let updatedLabel = [...this.state.histPricesLabel, item.label];
-//                  this.setState({
-//             histPrices: updatedPrices,
-//             histPricesLabel: updatedLabel,
-//         }, ()=> {console.log('Got chart data?',this.state.histPrices, this.state.histPricesLabel)})
-//             })
-//         })
-// }
+    getChartData=()=>{
+        const ticker= this.state.searchItem;
+        const apiKey = process.env.REACT_APP_IEX_KEY
+        const url = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/1m?token=${apiKey}`;
+        this.setState({histPrices: [],
+            histPricesLabel:[]
+        })
+        axios.get(url).then((prices)=>{
+            prices.data.map((item)=>{
+                let updatedPrices = [...this.state.histPrices,item.close];
+                let updatedLabel = [...this.state.histPricesLabel, item.label];
+                 this.setState({
+            histPrices: updatedPrices,
+            histPricesLabel: updatedLabel,
+        }, ()=> {console.log('Got chart data?',this.state.histPrices, this.state.histPricesLabel)})
+            })
+        })
+}
     
 
         componentDidMount(){
@@ -136,7 +122,7 @@ loadNews=()=>{
             this.loadNews();
             this.loadSaved();
             // this.getChartData();
-            // this.loadGoogleTrends();
+         
         }
 
         componentDidUpdate(prevProps,prevState){
@@ -146,7 +132,7 @@ loadNews=()=>{
                this.loadStocks();
                this.loadNews();
                this.loadSaved();
-               this.getChartData();
+            //    this.getChartData();
             }
         }
 
@@ -156,7 +142,7 @@ loadNews=()=>{
                 <div> 
 
                 <div className='header'>
-            <h1>Stock Tracker</h1>
+            <h1 style={{ fontFamily: 'Baskerville-Bold', fontSize:'50px' }}>Stock Tracker</h1>
             
 <div className="field">         
 <div className="ui toggle checkbox">
@@ -165,6 +151,7 @@ loadNews=()=>{
 </div>
 </div>
 </div> 
+<br></br>
 {this.state.toggle ? 
 (<SideBar
     savedStocks={this.state.savedStocks}
@@ -196,7 +183,7 @@ loadNews=()=>{
 <br></br>
 <hr style={{width: '60%', marginLeft:'auto', marginRight: 'auto'}}/>
 <hr style={{width: '60%', marginLeft:'auto', marginRight: 'auto'}}/>
-{/* <nav className="navbar navbar-dark bg-dark" style={{height:'2px'}}></nav> */}
+
 <div className='newsContainer'>
 
 <div className='main businessNews'><BusinessNews 

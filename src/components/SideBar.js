@@ -1,6 +1,6 @@
-
 import React, {Component} from 'react'
 import Button from './Button'
+import PropTypes from 'prop-types';
 
 class Sidebar extends Component{
   render(){
@@ -45,4 +45,15 @@ class Sidebar extends Component{
   )
 }
 }
+
+SideBar.propTypes = {
+    handleRecallSubmit: PropTypes.func,
+    onDelete: PropTypes.func,
+    savedStocks: PropTypes.arrayOf(
+    PropTypes.shape({
+        symbol: PropTypes.string.isRequired,
+        _id: PropTypes.string.isRequired,
+    })
+    )
+};
 export default Sidebar

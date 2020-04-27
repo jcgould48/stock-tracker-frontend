@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 // import PropTypes from 'prop-types';
 import Button from './Button';
 import './App.css'
+import PropTypes from 'prop-types';
 
 class Search extends Component{
     constructor(){
         super()
         this.state = {
             searchItem: '',
-            toggle: true,
         }
            
     }
@@ -30,7 +30,7 @@ class Search extends Component{
         return(
         <div>
             <div className='searchCard'>
-    <h2 style={{color:'#666666'}}>Search Stocks</h2>
+    <h3 style={{color:'#666666'}}>Search Stocks</h3>
     
 <form onSubmit={this.handleSubmit} className='ui form'>
     <div className='field'>
@@ -59,9 +59,11 @@ class Search extends Component{
 }
 
 
-// Search.propTypes = {
-//     handleChange: PropTypes.func,
-//     searchTerm: PropTypes.string,
-//     }
+Search.propTypes = {
+    handleSearchSubmitChange: PropTypes.func,
+    handleChange:PropTypes.func,
+    handleSubmit: PropTypes.func,
+    searchTerm: PropTypes.string,
+    }
 
 export default Search;

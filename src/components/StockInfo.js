@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import Button from './Button';
+import PropTypes from 'prop-types';
 
 class StockInfo extends Component {
     constructor(){
         super()
         this.state = {
-            stock:{
-            companyName:'', 
-            symbol:'',  
-        }, 
+        //     stock:{
+        //     companyName:'', 
+        //     symbol:'',  
+        // }, 
            
         }
     }
@@ -25,17 +26,19 @@ class StockInfo extends Component {
         <div>
 
 <div className = 'ui card'>
-      <div className="image">
-        <img src='' alt="..."/>
+      <div style={{background:'lightGrey'}}>
+        <i className='chart area icon'></i>
       </div>
       <div className="content">
           <a className="header">{this.props.stocks.companyName}</a>
           <div className="meta">{this.props.stocks.primaryExchange}: {this.props.stocks.symbol}</div>
+          <hr></hr>
       <div className="description">
-      {this.props.stocks.primaryExchange}
-
-    <div>Latest Price: {this.props.stocks.latestPrice}</div>
-    <div>{this.props.stocks.change}</div>
+    <div><b>Latest Price: </b>{this.props.stocks.latestPrice} USD</div>
+    {/* {this.props.stocks.change <0 ? <div style={{color:'red'}}><b>Change: </b>{this.props.stocks.change}</div>
+   : <div style={{color:'green'}}>{this.props.stocks.change}</div> } */}
+    <b>Current Price Change:</b> 
+    <div style={{color: Math.sign(this.props.stocks.change)===-1 ? "red" : "green"}}> {this.props.stocks.change}</div>
       </div>
       </div>
       </div>
@@ -49,4 +52,14 @@ class StockInfo extends Component {
 )};
 }
 
+StockInfo.propTypes = {
+    handleSaveSubmit: PropTypes.func,
+    stocks: PropTypes.shape({
+        companyName: PropTypes.string.isRequired,
+        primaryExchange: PropTypes.string.isRequired,
+        symbol: PropTypes.string.isRequired,
+        latestPrice: PropTypes.string.isRequired,
+        change: PropTypes.string.isRequired,
+    })
+};
 export default StockInfo;

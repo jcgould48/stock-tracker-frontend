@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 
 class BusinessNews extends Component {
@@ -30,5 +31,15 @@ class BusinessNews extends Component {
 </div>
 )};
 }
+BusinessNews.propTypes = {
+        news: PropTypes.arrayOf(
+        PropTypes.shape({
+            headline: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired,
+            source: PropTypes.string.isRequired,
+            summary: PropTypes.string.isRequired,
+        })
+        )
+};
 
 export default BusinessNews;
