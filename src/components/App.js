@@ -107,43 +107,73 @@ loadNews=()=>{
             )})
     })
     }
-    getChartData(){
-        // Ajax calls here
-        this.setState({
-          chartData:{
-            labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-            datasets:[
-              {
-                label:'Population',
-                data:[
-                  617594,
-                  181045,
-                  153060,
-                  106519,
-                  105162,
-                  95072
-                ],
-                backgroundColor:[
-                  'rgba(255, 99, 132, 0.6)',
-                  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                  'rgba(255, 159, 64, 0.6)',
-                  'rgba(255, 99, 132, 0.6)'
-                ]
-              }
-            ]
-          }
-        });
-      }
+    getChartData=()=>{
+        
+        const ticker= this.state.searchItem;
+        const apiKey = process.env.REACT_APP_IEX_KEY
+        const url = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/1m/20200415?token=${apiKey}`;
+        
+        axios.get(url).then((prices)=>{
+            this.setState({stocks: stocks.data})})
+            // this.setState({
+            //     chartData:{
+            //     // labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+            //     datasets:[
+            //       {
+            //         label:'Prices',
+            //         data:[
+            //          prices.data
+            //         ],
+            //         backgroundColor:[
+            //           'rgba(255, 99, 132, 0.6)',
+            //           'rgba(54, 162, 235, 0.6)',
+            //           'rgba(255, 206, 86, 0.6)',
+            //           'rgba(75, 192, 192, 0.6)',
+            //           'rgba(153, 102, 255, 0.6)',
+            //           'rgba(255, 159, 64, 0.6)',
+            //           'rgba(255, 99, 132, 0.6)'
+            //         ]
+            //       }
+            //     ]
+            //   }
+            // });},()=>{console.log("test...",this.state.chartData
+            // )})
+    }
+        // this.setState({
+        //   chartData:{
+        //     labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        //     datasets:[
+        //       {
+        //         label:'Population',
+        //         data:[
+        //           617594,
+        //           181045,
+        //           153060,
+        //           106519,
+        //           105162,
+        //           95072
+        //         ],
+        //         backgroundColor:[
+        //           'rgba(255, 99, 132, 0.6)',
+        //           'rgba(54, 162, 235, 0.6)',
+        //           'rgba(255, 206, 86, 0.6)',
+        //           'rgba(75, 192, 192, 0.6)',
+        //           'rgba(153, 102, 255, 0.6)',
+        //           'rgba(255, 159, 64, 0.6)',
+        //           'rgba(255, 99, 132, 0.6)'
+        //         ]
+        //       }
+        //     ]
+        //   }
+        // });
+      
 
 
         componentDidMount(){
             this.loadStocks();
             this.loadNews();
             this.loadSaved();
-            this.getchartData();
+            this.getChartData();
             // this.loadGoogleTrends();
         }
 
@@ -155,6 +185,7 @@ loadNews=()=>{
                this.loadStocks();
                this.loadNews();
                this.loadSaved();
+               this.getChartData();
             }
         }
 
@@ -165,19 +196,6 @@ loadNews=()=>{
             <h1>Hello World</h1>
             
 
-        {/* <div style= {{
-marginTop:'100px',
-display: 'flex',
-justifyContent:'center',
-alignItems:'center',
-flexDirection:'column',
-}}>  
-<Search 
-handleSearchSubmit= {this.handleSearchSubmit} 
-// searchTerm= {this.state.searchTerm}
-/>
-<hr style={{width: '75' , color: '#3b3b3b', margin : '50px 0'}}/>
-</div> */}
 <div class="ui checkbox">
   <input type="checkbox" name="toggle" onChange = {this.handleToggle}/>
   <label>View Favorites</label>
@@ -187,7 +205,6 @@ handleSearchSubmit= {this.handleSearchSubmit}
     savedStocks={this.state.savedStocks}
     onDelete={this.onDelete}
     handleSearchSubmit = {this.handleSearchSubmit}
-    // handleToggle = {this.handleToggle}
     />)
 : (<Search handleSearchSubmit = {this.handleSearchSubmit} />)
 }
@@ -204,7 +221,7 @@ handleSearchSubmit= {this.handleSearchSubmit}
 news={this.state.news} /></div>
 
 <div className='main'><Chart 
-stocks={this.state.stocks} /></div>
+stocks={this.state.stocks} chartData={this.state.chartData} /></div>
 
 <div className='main'><StockInfo
 handleSaveSubmit = {this.handleSaveSubmit}
