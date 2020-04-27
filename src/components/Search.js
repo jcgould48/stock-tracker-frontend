@@ -27,8 +27,8 @@ class Search extends Component{
     
     render() {
         return(
-        <div style={{margin:'40px', width: '300px'}}>
-            <div>
+        <div className='ui card'>
+            <div  style={{margin:'40px', width: '100%'}}>
     <h1>Search Stocks</h1>
     
 <form onSubmit={this.handleSubmit} className='ui form'>

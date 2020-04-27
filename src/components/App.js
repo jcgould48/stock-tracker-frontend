@@ -20,7 +20,7 @@ class App extends Component{
             histPricesLabel:[],
             savedStocks: [],
             searchItem: 'XOM',
-            toggle: true,
+            toggle: false,
         }
     }
 
@@ -38,8 +38,7 @@ class App extends Component{
     //     });
     // }
 
-handleToggle=(event)=> {
-    event.preventDefault();
+handleToggle=()=> {
     this.setState({
         toggle: !this.state.toggle,
     },()=>{console.log("toggle...",this.state.toggle
@@ -171,14 +170,7 @@ loadNews=()=>{
     />)
 : (<nav className="navbar navbar-dark bg-dark" style={{height:'55px'}}></nav>)
 }
-<Search handleSearchSubmit = {this.handleSearchSubmit} />
-{/* <SideBar
-            savedStocks={this.state.savedStocks}
-            onDelete={this.onDelete}
-            handleSearchSubmit = {this.handleSearchSubmit}
-            // handleToggle = {this.handleToggle}
-            /> */}
-
+<Search  className ='search' handleSearchSubmit = {this.handleSearchSubmit} />
 
     <div className='container'>
 <div className='main'><BusinessNews 
