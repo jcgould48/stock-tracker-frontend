@@ -17,6 +17,7 @@ class App extends Component{
             stocks: [],
             news: [],
             histPrices:[],
+            histPricesLabel:[],
             savedStocks: [],
             searchItem: 'XOM',
             toggle: true,
@@ -114,12 +115,21 @@ loadNews=()=>{
     getChartData=()=>{
         const ticker= this.state.searchItem;
         const apiKey = process.env.REACT_APP_IEX_KEY
-        const url = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/1m/20200415?token=${apiKey}`;
-        
+        const url = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/1m?token=${apiKey}`;
+        this.setState({histPrices: [],
+            histPricesLabel:[]
+        })
         axios.get(url).then((prices)=>{
-            this.setState({histPrices: prices.data},()=>{console.log("histPrices...",this.state.histPrices
-            )})
-    })}
+            prices.data.map((item)=>{
+                let updatedPrices = [...this.state.histPrices,item.close];
+                let updatedLabel = [...this.state.histPricesLabel, item.label];
+                 this.setState({
+            histPrices: updatedPrices,
+            histPricesLabel: updatedLabel,
+        }, ()=> {console.log('Got chart data?',this.state.histPrices, this.state.histPricesLabel)})
+            })
+        })
+}
     
 
         componentDidMount(){
@@ -147,11 +157,15 @@ loadNews=()=>{
             return(   
                 <div>
             <h1>Hello World</h1>
-            
-
-<div class="ui checkbox">
+            <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+    <div class="field">         
+<div class="ui toggle checkbox">
   <input type="checkbox" name="toggle" onChange = {this.handleToggle}/>
   <label>View Favorites</label>
+</div>
 </div>
 {this.state.toggle ? 
 (<SideBar
@@ -175,7 +189,10 @@ loadNews=()=>{
 news={this.state.news} /></div>
 
 <div className='main'><Chart 
-stocks={this.state.stocks} histPrices={this.state.histPrices} /></div>
+stocks={this.state.stocks} 
+histPrices={this.state.histPrices} 
+histPricesLabel={this.state.histPricesLabel} 
+/></div>
 
 <div className='main'><StockInfo
 handleSaveSubmit = {this.handleSaveSubmit}

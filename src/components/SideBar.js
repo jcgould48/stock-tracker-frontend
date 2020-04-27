@@ -20,13 +20,14 @@ class Sidebar extends Component{
             >
             {item.companyName}
             </Button>
-      </a>  
-      <Button type='submit' className='ui mini red button' onClick={() =>{
+            <Button type='submit' className='ui mini red button' onClick={() =>{
                 return this.props.onDelete(item._id)
             }}
             >
                 X
             </Button>
+      </a>  
+    
       </div>
     )
    })} 
