@@ -4,7 +4,6 @@ import Button from './Button'
 import Search from './Search';
 
 class Sidebar extends Component{
-    
   render(){
       return (
       <div>       
@@ -13,8 +12,14 @@ class Sidebar extends Component{
   {this.props.savedStocks.map((item) => {
     return (
         <div>
+            
         <a class="item">
-        {item.companyName}
+        <Button type='submit' className='ui mini white button' onClick={() =>{
+                return this.props.handleRecallSubmit(item.symbol)
+            }}
+            >
+            {item.companyName}
+            </Button>
       </a>  
       <Button type='submit' className='ui mini red button' onClick={() =>{
                 return this.props.onDelete(item._id)

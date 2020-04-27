@@ -40,7 +40,7 @@ class StockInfo extends Component {
       </div>
       </div>
       <form onSubmit={this.handleSave}>
-        <input 
+        {/* <input 
         // onChange={this.handleChange} 
         type='hidden'
         name='companyName' 
@@ -52,7 +52,7 @@ class StockInfo extends Component {
         type='hidden'
         name='symbol' 
         value={this.props.stocks.symbol}
-        />
+        /> */}
 
             <Button type='submit' className='ui green button' >
                 Add To Watch List

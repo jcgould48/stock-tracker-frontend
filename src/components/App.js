@@ -16,7 +16,7 @@ class App extends Component{
         this.state = {
             stocks: [],
             news: [],
-            chartData:{},
+            histPrices:[],
             savedStocks: [],
             searchItem: 'XOM',
             toggle: true,
@@ -58,7 +58,10 @@ handleSearchSubmit = (event, searchItem) => {
     this.setState({searchItem: searchItem}, 
         ()=>{console.log('searchNow...',this.state.searchItem)})
         //this.loadStocks();
- 
+    }
+
+handleRecallSubmit = (item) => {
+    this.setState({searchItem: item})
     }
 
 
@@ -107,67 +110,17 @@ loadNews=()=>{
             )})
     })
     }
+
     getChartData=()=>{
-        
         const ticker= this.state.searchItem;
         const apiKey = process.env.REACT_APP_IEX_KEY
         const url = `https://cloud.iexapis.com/stable/stock/${ticker}/chart/1m/20200415?token=${apiKey}`;
         
         axios.get(url).then((prices)=>{
-            this.setState({stocks: stocks.data})})
-            // this.setState({
-            //     chartData:{
-            //     // labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-            //     datasets:[
-            //       {
-            //         label:'Prices',
-            //         data:[
-            //          prices.data
-            //         ],
-            //         backgroundColor:[
-            //           'rgba(255, 99, 132, 0.6)',
-            //           'rgba(54, 162, 235, 0.6)',
-            //           'rgba(255, 206, 86, 0.6)',
-            //           'rgba(75, 192, 192, 0.6)',
-            //           'rgba(153, 102, 255, 0.6)',
-            //           'rgba(255, 159, 64, 0.6)',
-            //           'rgba(255, 99, 132, 0.6)'
-            //         ]
-            //       }
-            //     ]
-            //   }
-            // });},()=>{console.log("test...",this.state.chartData
-            // )})
-    }
-        // this.setState({
-        //   chartData:{
-        //     labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-        //     datasets:[
-        //       {
-        //         label:'Population',
-        //         data:[
-        //           617594,
-        //           181045,
-        //           153060,
-        //           106519,
-        //           105162,
-        //           95072
-        //         ],
-        //         backgroundColor:[
-        //           'rgba(255, 99, 132, 0.6)',
-        //           'rgba(54, 162, 235, 0.6)',
-        //           'rgba(255, 206, 86, 0.6)',
-        //           'rgba(75, 192, 192, 0.6)',
-        //           'rgba(153, 102, 255, 0.6)',
-        //           'rgba(255, 159, 64, 0.6)',
-        //           'rgba(255, 99, 132, 0.6)'
-        //         ]
-        //       }
-        //     ]
-        //   }
-        // });
-      
-
+            this.setState({histPrices: prices.data},()=>{console.log("histPrices...",this.state.histPrices
+            )})
+    })}
+    
 
         componentDidMount(){
             this.loadStocks();
@@ -205,6 +158,7 @@ loadNews=()=>{
     savedStocks={this.state.savedStocks}
     onDelete={this.onDelete}
     handleSearchSubmit = {this.handleSearchSubmit}
+    handleRecallSubmit = {this.handleRecallSubmit}
     />)
 : (<Search handleSearchSubmit = {this.handleSearchSubmit} />)
 }
@@ -221,7 +175,7 @@ loadNews=()=>{
 news={this.state.news} /></div>
 
 <div className='main'><Chart 
-stocks={this.state.stocks} chartData={this.state.chartData} /></div>
+stocks={this.state.stocks} histPrices={this.state.histPrices} /></div>
 
 <div className='main'><StockInfo
 handleSaveSubmit = {this.handleSaveSubmit}
