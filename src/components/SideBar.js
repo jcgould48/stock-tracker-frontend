@@ -4,23 +4,7 @@ import Button from './Button'
 import Search from './Search';
 
 class Sidebar extends Component{
-    constructor(){
-        super()
-        this.state = {
-            toggle: true,
-        }
-           
-    }
-    handleToggle=(event)=> {
-        event.preventDefault();
-        console.log("toggle11...",this.state.toggle
-        )
-        this.setState({
-            toggle: !this.state.toggle,
-        },()=>{console.log("toggle...",this.state.toggle
-        )})
-    }
-
+    
   render(){
       return (
       <div>       
@@ -51,12 +35,6 @@ justifyContent:'center',
 alignItems:'center',
 flexDirection:'column',
 }}>  
-{/* <div>
-            {this.state.toggle
-            ? <h1>Yep</h1>
-            : <h1>Nope</h1>
-          }
-        </div> */}
 <Search 
 handleSearchSubmit= {this.props.handleSearchSubmit} 
 // handleToggle ={handleToggle}
@@ -71,7 +49,7 @@ handleSearchSubmit= {this.props.handleSearchSubmit}
     </div>
   </div>
 </div>
-<a href="https://iexcloud.io">Data provided by IEX Cloud</a>
+
 </div>
   )
 }

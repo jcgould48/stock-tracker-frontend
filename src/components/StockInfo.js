@@ -34,7 +34,8 @@ class StockInfo extends Component {
       <div className="description">
       {this.props.stocks.primaryExchange}
 
-    <div>{this.props.stocks.iexRealtimePrice}</div>
+    <div>{this.props.stocks.latestPrice}</div>
+    <div>{this.props.stocks.change}</div>
       </div>
       </div>
       </div>
