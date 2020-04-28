@@ -3,6 +3,7 @@
 Powered by React
 
 [Link to project on Github - Front-End](https://github.com/jcgould48/stock-tracker-frontend)
+
 [Link to project on Github - Back-End](https://github.com/jcgould48/stock-tracker-backend)
 
 This app was made possible by the 
@@ -59,7 +60,7 @@ Route | Method| Description
 2. Sign up for a IEX API Key
 3. Follow the frontend and backend procedures below
 
-#### Frontend
+#### Front-end
 In the project front-end directory, you can run:
 
       npm install
@@ -69,7 +70,7 @@ In the project front-end directory, you can run:
 The page will reload upon edits.
 
 
-Back-end
+#### Back-end
 
 In the project back-end directory, you can run:
 
@@ -77,13 +78,14 @@ In the project back-end directory, you can run:
       npm run dev
 Runs the server for the app.
 
+*** 
 
 Create .env file and populate it with the following.
 
-#### Frontend .env
+#### Front-end .env
 *REACT_APP_'key name' = The API calls are on the front end through react and so the key name MUST to be in this format.
 
-#### Backend .env
+#### Back-end .env
    * PORT = Number of your preferred port.
    * MONGODB_URI = 'Path to your MongoDB storage'
    
