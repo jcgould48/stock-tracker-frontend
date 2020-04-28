@@ -2,7 +2,8 @@
 ## Welcome to the Stock Tracker Application
 Powered by React
 
-[Link to project on Github](https://github.com/jcgould48/stock-tracker-frontend)
+[Link to project on Github - Front-End](https://github.com/jcgould48/stock-tracker-frontend)
+[Link to project on Github - Back-End](https://github.com/jcgould48/stock-tracker-backend)
 
 This app was made possible by the 
 
