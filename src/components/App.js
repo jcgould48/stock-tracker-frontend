@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-// import googleTrends from 'google-trends-api'
 import Search from './Search';
 import BusinessNews from './BusinessNews';
 import StockInfo from './StockInfo';
@@ -43,13 +42,12 @@ handleSearchSubmit = (event, searchItem) => {
     event.preventDefault();
     this.setState({searchItem: searchItem}, 
         ()=>{console.log('searchNow...',this.state.searchItem)})
-        //this.loadStocks();
+        
     }
 
 handleRecallSubmit = (item) => {
     this.setState({searchItem: item})
     }
-
 
 handleSaveSubmit = (event) => {
     event.preventDefault();
@@ -121,7 +119,7 @@ loadNews=()=>{
             this.loadStocks();
             this.loadNews();
             this.loadSaved();
-            // this.getChartData();
+            this.getChartData();
          
         }
 
@@ -132,7 +130,7 @@ loadNews=()=>{
                this.loadStocks();
                this.loadNews();
                this.loadSaved();
-            //    this.getChartData();
+               this.getChartData();
             }
         }
 

@@ -1,70 +1,110 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Welcome to the Stock Tracker Application
+Powered by React
 
-In the project directory, you can run:
+[Link to project on Github](https://github.com/jcgould48/stock-tracker-frontend)
 
-### `npm start`
+This app was made possible by the 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [IEX Cloud Financial Data API](https://iexcloud.io)
+* [Bootstrap](https://getbootstrap.com/)
+* [Semantic UI](https://semantic-ui.com/)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* [React-Chartjs-2](https://github.com/jerairrest/react-chartjs-2)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To learn more:
 
-### `npm run build`
+[React Documentation](https://create-react-app.dev/docs/getting-started/)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  [IEX API Documentation](https://iexcloud.io/docs/api/)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## About Stock Tracker App-
+This application allows users to track basic information around the US based stock market:
+* Company Name
+* Listing Index
+* Current Stock Price
+* Current Price Change
+* 30-Day Stock Price Graph
+* Recent News
 
-### `npm run eject`
+At this time any user can use the application without registering.  They can simply download the app from github and have at it.  
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Functionality:
+When both the backend and frontend are started, the user can type in the desired stock ticker into the search bar and hit 'Search'.  If the ticker is correct, all of the corresponding information for the stock of that company will be displayed.  
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The user can choose to save the stock by clicking the 'Add To Watch List' button.  The user can also view the current updated watch list by clicking the show favorites toggle at the top of the page.  Clicking the toggle again will hide the saved stocks.  Clicking the red 'X' will delete stocks from the list.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Utilized Backend Routes:
 
-## Learn More
+Route | Method| Description 
+------------ | ------------- | -------------
+|||
+/stocks| Post | Adds the capability to save favorite stocks to the data base which can be later recalled
+/stock| Get | Recall method to populate the 'Favorites' list with saved stocks
+/stock/:id | Delete | Allows user the ability to delete a specific stock from the database and subsequently the 'Favorites' list.
+|||
+|||
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+***
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Getting started:
 
-### Analyzing the Bundle Size
+1. Fork and clone the front and backend  repository
+2. Sign up for a IEX API Key
+3. Follow the frontend and backend procedures below
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+#### Frontend
+In the project front-end directory, you can run:
 
-### Making a Progressive Web App
+      npm install
+      npm start
+      Open http://localhost:3000 to view it in the browser.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The page will reload upon edits.
 
-### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Back-end
 
-### Deployment
+In the project back-end directory, you can run:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+      npm install
+      npm run dev
+Runs the server for the app.
 
-### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Create .env file and populate it with the following.
 
-Alpha Vantage API key: PZUUFDH2HTMYFP1T
+#### Frontend .env
+*REACT_APP_'key name' = The API calls are on the front end through react and so the key name MUST to be in this format.
+
+#### Backend .env
+   * PORT = Number of your preferred port.
+   * MONGODB_URI = 'Path to your MongoDB storage'
+   
+
+
+## NPM Packages
+***
+
+      Front-end
+
+      Axios
+      React Chart JS 2
+      dotenv
+
+
+      Back-end 
+
+      express
+      morgan
+      mongoose
+      dotenv
+      cors
+
+
+

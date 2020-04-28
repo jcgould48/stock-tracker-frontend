@@ -60,7 +60,7 @@ class Chart extends Component{
     }
   }
 
-  Charts.propTypes = {
+  Chart.propTypes = {
         histPrices: PropTypes.string.isRequired,
         histPricesLabel: PropTypes.string.isRequired,
         displayTitle:PropTypes.bool.isRequired,

@@ -17,7 +17,7 @@ class Sidebar extends Component{
         <div>
          <li className="nav-item active">
         <a className="nav-link" href="#">   
-        {/* <a class="item"> */}
+       
         <Button type='submit' className="btn btn-sm btn-outline-light" onClick={() =>{
                 return this.props.handleRecallSubmit(item.symbol)
             }}
@@ -46,7 +46,7 @@ class Sidebar extends Component{
 }
 }
 
-SideBar.propTypes = {
+Sidebar.propTypes = {
     handleRecallSubmit: PropTypes.func,
     onDelete: PropTypes.func,
     savedStocks: PropTypes.arrayOf(

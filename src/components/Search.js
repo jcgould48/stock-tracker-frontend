@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import PropTypes from 'prop-types';
 import Button from './Button';
 import './App.css'
 import PropTypes from 'prop-types';
@@ -46,7 +45,7 @@ class Search extends Component{
          <div className="field">
            <div className='mybtn'>
             <Button type='submit' className="btn btn-outline-dark">
-                Submit
+                Search
             </Button>
             </div>  
         </div>
