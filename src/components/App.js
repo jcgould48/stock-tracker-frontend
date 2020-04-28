@@ -51,8 +51,7 @@ handleRecallSubmit = (item) => {
 
 handleSaveSubmit = (event) => {
     event.preventDefault();
-    console.log('Is the save working...',this.state.stocks)
-    console.log('Is the save working2...',this.state.stocks.symbol)
+    // console.log('Is the save working...',this.state.stocks)
     let axiosConfig={
         headers: {
             'Content-Type' : 'application/json;charset=UTF-8',
@@ -106,10 +105,12 @@ loadNews=()=>{
             prices.data.map((item)=>{
                 let updatedPrices = [...this.state.histPrices,item.close];
                 let updatedLabel = [...this.state.histPricesLabel, item.label];
-                 this.setState({
+              return   this.setState({
             histPrices: updatedPrices,
             histPricesLabel: updatedLabel,
-        }, ()=> {console.log('Got chart data?',this.state.histPrices, this.state.histPricesLabel)})
+        }
+        // , ()=> {console.log('Got chart data?',this.state.histPrices, this.state.histPricesLabel)}
+    )
             })
         })
 }

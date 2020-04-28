@@ -40,7 +40,7 @@ class Search extends Component{
         placeholder='Search By Stock Ticker...'
         value={this.state.searchTerm}
         />
-         <i aria-hidden="true" class="search icon"></i>
+         <i aria-hidden="true" className="search icon"></i>
          </div>
          <div className="field">
            <div className='mybtn'>

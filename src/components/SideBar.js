@@ -16,9 +16,9 @@ class Sidebar extends Component{
     return (
         <div>
          <li className="nav-item active">
-        <a className="nav-link" href="#">   
+        <a className="nav-link" href='#' alt='...' >   
        
-        <Button type='submit' className="btn btn-sm btn-outline-light" onClick={() =>{
+        <Button type='submit' className="btn btn-sm btn-light" onClick={() =>{
                 return this.props.handleRecallSubmit(item.symbol)
             }}
             >

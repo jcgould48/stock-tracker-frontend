@@ -10,9 +10,9 @@ class BusinessNews extends Component {
     return(   
         <div>
         <h2 style={{color:'#666666'}}>Recent News</h2>
-   {this.props.news.map((item) => {
+   {this.props.news.map((item, idx) => {
     return (
-        <div className= 'ui card' style={{width: '100%'}}>
+        <div key={idx} className= 'ui card' style={{width: '100%'}}>
        <div className='content'>
            <div className='header'>{item.headline}</div>
            <br />

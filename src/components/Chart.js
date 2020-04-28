@@ -64,9 +64,10 @@ class Chart extends Component{
         histPrices: PropTypes.string.isRequired,
         histPricesLabel: PropTypes.string.isRequired,
         displayTitle:PropTypes.bool.isRequired,
-        stocks:PropTypes.shape({
+        stocks:PropTypes.arrayOf(
+        PropTypes.shape({
             companyName: PropTypes.string.isRequired,
-}),
+})),
         histPricesLabel: PropTypes.array,
         histPrices: PropTypes.array,
   };

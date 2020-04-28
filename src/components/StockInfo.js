@@ -54,12 +54,13 @@ class StockInfo extends Component {
 
 StockInfo.propTypes = {
     handleSaveSubmit: PropTypes.func,
-    stocks: PropTypes.shape({
+    stocks: 
+    PropTypes.shape({
         companyName: PropTypes.string.isRequired,
         primaryExchange: PropTypes.string.isRequired,
         symbol: PropTypes.string.isRequired,
-        latestPrice: PropTypes.string.isRequired,
-        change: PropTypes.string.isRequired,
+        latestPrice: PropTypes.number.isRequired,
+        change: PropTypes.number.isRequired,
     })
 };
 export default StockInfo;
